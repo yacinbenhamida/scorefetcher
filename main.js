@@ -41,7 +41,7 @@ module.exports = ".example-container {\r\n    display: flex;\r\n    flex-directi
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\r\n<br/>\r\n<h1 class=\"tah\">Calcul score concours spécifique</h1>\r\n<h2 class=\"tah\">SCORE 1</h2>\r\n<form>\r\n<div class=\"example-container\">\r\n  <mat-form-field >\r\n      <form>\r\n    <input name=\"moybac\" type=\"number\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"moybac\" matInput placeholder=\"Votre moyenne au bac\">\r\n  </form>\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"r1\" matInput placeholder=\"Votre rang pour la 1ére année\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\"  matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"effectif1\" placeholder=\"L'effectif de la promotion (1ére année)\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\" matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"r2\" placeholder=\"Votre rang pour la 2éme année\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\" matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"effectif2\" placeholder=\"L'effectif de la promotion (2éme année)\" >\r\n  </mat-form-field>\r\n  <div>\r\n    <label class=\"tah1\">Année de naissance : </label>\r\n    <mat-radio-group name=\"annenaiss\" [(ngModel)]=\"annenaiss\">\r\n      <mat-radio-button   value=\"1997\">1997 </mat-radio-button>\r\n      <mat-radio-button   value=\"1996\"> 1996</mat-radio-button>\r\n    </mat-radio-group>\r\n  </div>\r\n  <h2 class=\"tah\">SCORE 2</h2>\r\n  <mat-form-field >\r\n    <input type=\"number\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"matprincip\" matInput placeholder=\"La moyenne générale de la matiére principale (ex : mathématiques)\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"matgenerale\" matInput placeholder=\"La moyenne générale en français et en anglais\">\r\n  </mat-form-field>\r\n  <br/>\r\n\r\n  <button mat-raised-button color=\"primary\" *ngIf=\"res == false\" (click)=\"calcul()\">Caculer</button>\r\n  <br/>\r\n  <button mat-raised-button color=\"warn\" (click)=\"init()\" *ngIf=\"res == true\">réinitialiser</button>\r\n  <br/>\r\n  <div style=\"text-align: center;\" *ngIf=\"res == true\">\r\n  <div class=\"tah1\">\r\n    score 1 : {{s1}}/125<br/> \r\n    score 2 : {{s2}}/40\r\n  </div>\r\n  <h2 class=\"tah\">SCORE GLOBAL = SCORE 1 + SCORE 2</h2>\r\n  <h1 class=\"tah\">VOTRE SCORE : {{totale}}/165</h1>\r\n</div>\r\n</div>\r\n</form>"
+module.exports = "\r\n<br/>\r\n<h1 class=\"tah\">Calcul score concours spécifique</h1>\r\n<h2 class=\"tah\">SCORE 1</h2>\r\n<form>\r\n<div class=\"example-container\">\r\n  <mat-form-field hintLabel=\"la moyenne sur 20\">\r\n    <input name=\"moybac\" type=\"number\" max=\"20\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"moybac\" matInput placeholder=\"Votre moyenne au bac\">\r\n  </mat-form-field>\r\n  <mat-form-field hintLabel=\"la moyenne sur 20 pour les semestres 1 et 2\">\r\n    <input name=\"s1s2\" type=\"number\" max=\"20\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s1s2\" matInput placeholder=\"Votre moyenne générale en 1ére année\">\r\n  </mat-form-field>\r\n  <mat-form-field hintLabel=\"la moyenne sur 20 pour les semestres 2 et 3\">\r\n    <input name=\"s2s3\" type=\"number\" max=\"20\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"s2s3\" matInput placeholder=\"Votre moyenne générale en 2éme année\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\"   [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"r1\" matInput placeholder=\"Votre rang pour la 1ére année\">\r\n  </mat-form-field>\r\n  <mat-form-field  hintLabel=\"toute la promotion\">\r\n    <input type=\"number\"  matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"effectif1\" placeholder=\"L'effectif de la promotion (1ére année)\">\r\n  </mat-form-field>\r\n  <mat-form-field>\r\n    <input type=\"number\" matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"r2\" placeholder=\"Votre rang pour la 2éme année\">\r\n  </mat-form-field>\r\n  <mat-form-field  hintLabel=\"toute la promotion\">\r\n    <input type=\"number\" matInput [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"effectif2\" placeholder=\"L'effectif de la promotion (2éme année)\" >\r\n  </mat-form-field>\r\n  <div>\r\n    <label class=\"tah1\">Année de naissance : </label>\r\n    <mat-radio-group name=\"annenaiss\" [(ngModel)]=\"annenaiss\">\r\n      <mat-radio-button   value=\"1997\">1997 </mat-radio-button>\r\n      <mat-radio-button   value=\"1996\"> 1996</mat-radio-button>\r\n    </mat-radio-group>\r\n  </div>\r\n  <h2 class=\"tah\">SCORE 2</h2>\r\n  <mat-form-field hintLabel=\"la moyenne sur 20\">\r\n    <input type=\"number\" max=\"20\" #input=\"ngModel\" maxlength=\"2\" [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"matprincip\" matInput placeholder=\"La moyenne générale de la matiére principale (ex : mathématiques)\">\r\n    <mat-hint align=\"end\">{{matprincip >0 && matprincip<=20? matprincip : 0 }}/20</mat-hint>    \r\n  </mat-form-field>\r\n  <mat-form-field hintLabel=\"la moyenne sur 20\">\r\n    <input type=\"number\" max=\"20\" #inp=\"ngModel\"  [ngModelOptions]=\"{standalone: true}\" [(ngModel)]=\"matgenerale\" matInput placeholder=\"La moyenne générale en français et en anglais\">\r\n    <mat-hint align=\"end\">{{matprincip >0 && matprincip<=20? matprincip : 0 }}/20</mat-hint>    \r\n  </mat-form-field>\r\n  <br/>\r\n\r\n  <button mat-raised-button color=\"primary\" *ngIf=\"res == false\" (click)=\"calcul()\">Caculer</button>\r\n  <br/>\r\n  <button mat-raised-button color=\"warn\" (click)=\"init()\" *ngIf=\"res == true\">réinitialiser</button>\r\n  <br/>\r\n  <div style=\"text-align: center;\" *ngIf=\"res == true\">\r\n  <div class=\"tah1\">\r\n    score 1 : {{s1}}/125<br/> \r\n    score 2 : {{s2}}/40\r\n  </div>\r\n  <h2 class=\"tah\">SCORE GLOBAL = SCORE 1 + SCORE 2</h2>\r\n  <h1 class=\"tah\">VOTRE SCORE : {{totale}}/165</h1>\r\n</div>\r\n</div>\r\n</form>"
 
 /***/ }),
 
@@ -68,7 +68,6 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 var AppComponent = /** @class */ (function () {
     function AppComponent() {
-        this.title = 'app';
         this.M = 0;
         this.totale = 0;
         this.s1 = 0;
@@ -76,12 +75,12 @@ var AppComponent = /** @class */ (function () {
         this.res = false;
     }
     AppComponent.prototype.calcul = function () {
-        var ri1, ri2, R, B1, B2 = 0;
-        if (this.moybac >= 15) {
+        var ri1, ri2, R, B1, B2, mguniv = 0;
+        mguniv = (this.s1s2 + this.s2s3) / 2;
+        if (mguniv >= 15)
             this.M = 100;
-        }
-        else if (this.moybac > 10 && this.moybac < 15)
-            this.M = 20 * (this.moybac - 10);
+        else if (mguniv > 10 && mguniv < 15)
+            this.M = 20 * (mguniv - 10);
         ri1 = (this.r1 - 1) / this.effectif1;
         ri2 = (this.r2 - 1) / this.effectif2;
         R = (0.5) * ((100 - (700 * ri1) / 3) + (100 - (700 * ri2) / 3));
@@ -103,12 +102,11 @@ var AppComponent = /** @class */ (function () {
         this.s1 = 0.3 * this.M + 0.7 * R + B1 + B2;
         this.s2 = Number(this.matprincip) + Number(this.matgenerale);
         this.totale = this.s1 + this.s2;
-        if (!isNaN(this.totale)) {
-            this.res = true;
+        if (isNaN(this.totale) || this.totale > 165 || this.s1 > 125 || this.s2 > 40 || this.totale <= 0 || this.s1 <= 0 || this.s2 <= 0) {
+            alert("veuillez verifier les champs!");
         }
         else {
-            alert("veuillez verifier les champs!");
-            this.init();
+            this.res = true;
         }
     };
     AppComponent.prototype.init = function () {
@@ -124,6 +122,8 @@ var AppComponent = /** @class */ (function () {
         this.matprincip = null;
         this.matgenerale = null;
         this.moybac = null;
+        this.s1s2 = null;
+        this.s2s3 = null;
     };
     AppComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
